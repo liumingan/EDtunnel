@@ -5,7 +5,7 @@ import { connect } from 'cloudflare:sockets';
 // [Windows] Press "Win + R", input cmd and run:  Powershell -NoExit -Command "[guid]::NewGuid()"
 let userID = '84c983bc-36c7-4a5f-9fd7-2beec4cade9a';
 
-const proxyIPs = ['work1.liumingan.cloudns.org', 'work2.liumingan.cloudns.org', 'work3.liumingan.cloudns.org', 'work4.liumingan.cloudns.org', 'work5.liumingan.cloudns.org', 'work6.liumingan.cloudns.org', 'work7.liumingan.cloudns.org'];
+const proxyIPs = ['work1.homeip.us.eu.org', 'work2.homeip.us.eu.org', 'work3.homeip.us.eu.org', 'work4.homeip.us.eu.org', 'work5.homeip.us.eu.org', 'work6.homeip.us.eu.org', 'work7.homeip.us.eu.org'];
 
 // if you want to use ipv6 or single proxyIP, please add comment at this line and remove comment at the next line
 let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
