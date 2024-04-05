@@ -5,7 +5,7 @@ import { connect } from 'cloudflare:sockets';
 // [Windows] Press "Win + R", input cmd and run:  Powershell -NoExit -Command "[guid]::NewGuid()"
 let userID = '84c983bc-36c7-4a5f-9fd7-2beec4cade9a';
 
-const proxyIPs = ['work1.homeip.us.eu.org', 'work2.homeip.us.eu.org', 'work3.homeip.us.eu.org', 'work4.homeip.us.eu.org'];
+const proxyIPs = ['cdn.xn--b6gac.eu.org', 'cdn-all.xn--b6gac.eu.org', 'workers.cloudflare.cyou'];
 
 // if you want to use ipv6 or single proxyIP, please add comment at this line and remove comment at the next line
 let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
@@ -14,7 +14,7 @@ let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
 // ipv6 proxyIP example remove comment to use
 // let proxyIP = "[2a01:4f8:c2c:123f:64:5:6810:c55a]"
 
-let dohURL = 'https://sky.rethinkdns.com/1:-Pf_____9_8A_AMAIgE8kMABVDDmKOHTAKg='; // https://cloudflare-dns.com/dns-query or https://dns.google/dns-query
+let dohURL = ['work1.homeip.us.eu.org', 'work2.homeip.us.eu.org', 'work3.homeip.us.eu.org', 'work4.homeip.us.eu.org'];
 
 if (!isValidUUID(userID)) {
 	throw new Error('uuid is invalid');
