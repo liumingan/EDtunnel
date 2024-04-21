@@ -5,7 +5,7 @@ import { connect } from 'cloudflare:sockets';
 // [Windows] Press "Win + R", input cmd and run:  Powershell -NoExit -Command "[guid]::NewGuid()"
 let userID = '84c983bc-36c7-4a5f-9fd7-2beec4cade9a';
 
-const proxyIPs = ['cdn.xn--b6gac.eu.org', 'cdn-all.xn--b6gac.eu.org', 'workers.cloudflare.cyou'];
+const proxyIPs = ['work1.homeip.us.eu.org', 'work2.homeip.us.eu.org', 'work3.homeip.us.eu.org', 'work4.homeip.us.eu.org'];
 
 // if you want to use ipv6 or single proxyIP, please add comment at this line and remove comment at the next line
 let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
@@ -14,7 +14,7 @@ let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
 // ipv6 proxyIP example remove comment to use
 // let proxyIP = "[2a01:4f8:c2c:123f:64:5:6810:c55a]"
 
-let dohURL = ['work1.homeip.us.eu.org', 'work2.homeip.us.eu.org', 'work3.homeip.us.eu.org', 'work4.homeip.us.eu.org'];
+let dohURL = 'https://sky.rethinkdns.com/1:-Pf_____9_8A_AMAIgE8kMABVDDmKOHTAKg='; // https://cloudflare-dns.com/dns-query or https://dns.google/dns-query
 
 if (!isValidUUID(userID)) {
 	throw new Error('uuid is invalid');
@@ -704,8 +704,8 @@ function getVLESSConfig(userIDs, hostName) {
 
 	// Prepare output string for each userID
 	const output = userIDArray.map((userID) => {
-		const vlessMain = `vless://${userID}@${hostName}${commonUrlPart}`;
-		const vlessSec = `vless://${userID}@${proxyIP}${commonUrlPart}`;
+		const vlessMain = 'vless://' + userID + '@' + hostName + commonUrlPart;
+		const vlessSec = 'vless://' + userID + '@' + proxyIP + commonUrlPart;
 		return `<h2>UUID: ${userID}</h2>${hashSeparator}\nv2ray default ip
 ---------------------------------------------------------------
 ${vlessMain}
@@ -839,9 +839,9 @@ function createVLESSSub(userID_Path, hostName) {
 		const httpConfigurations = Array.from(portSet_http).flatMap((port) => {
 			if (!hostName.includes('pages.dev')) {
 				const urlPart = `${hostName}-HTTP-${port}`;
-				const vlessMainHttp = `vless://${userID}@${hostName}:${port}${commonUrlPart_http}${urlPart}`;
+				const vlessMainHttp = 'vless://' + userID + '@' + hostName + ':' + port + commonUrlPart_http + urlPart;
 				return proxyIPs.flatMap((proxyIP) => {
-					const vlessSecHttp = `vless://${userID}@${proxyIP}:${port}${commonUrlPart_http}${urlPart}-${proxyIP}-EDtunnel`;
+					const vlessSecHttp = 'vless://' + userID + '@' + proxyIP + ':' + port + commonUrlPart_http + urlPart + '-' + proxyIP + '-EDtunnel';
 					return [vlessMainHttp, vlessSecHttp];
 				});
 			}
@@ -850,9 +850,9 @@ function createVLESSSub(userID_Path, hostName) {
 
 		const httpsConfigurations = Array.from(portSet_https).flatMap((port) => {
 			const urlPart = `${hostName}-HTTPS-${port}`;
-			const vlessMainHttps = `vless://${userID}@${hostName}:${port}${commonUrlPart_https}${urlPart}`;
+			const vlessMainHttps = 'vless://' + userID + '@' + hostName + ':' + port + commonUrlPart_https + urlPart;
 			return proxyIPs.flatMap((proxyIP) => {
-				const vlessSecHttps = `vless://${userID}@${proxyIP}:${port}${commonUrlPart_https}${urlPart}-${proxyIP}-EDtunnel`;
+				const vlessSecHttps = 'vless://' + userID + '@' + proxyIP + ':' + port + commonUrlPart_https + urlPart + '-' + proxyIP + '-EDtunnel';
 				return [vlessMainHttps, vlessSecHttps];
 			});
 		});
